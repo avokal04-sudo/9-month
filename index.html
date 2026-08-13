@@ -1,70 +1,218 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>9 Months of Us ❤️</title>
+    <title>9 Months of Us - An Epic Love Story</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #e91e63; --gold: #ffd700; --text: #f5e6f0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        /* 💖 HER PHOTO IS THE WALLPAPER ON ALL PAGES 💖 */
-        body { background: #0b081a url('welcome.jpg') center/cover fixed no-repeat; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        /* Create a dreamy, romantic overlay */
-        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 8, 26, 0.6); backdrop-filter: blur(18px) brightness(0.9); z-index: -1; }
+        :root { --primary: #e91e63; --gold: #ffd700; --text: #f5e6f0; --bg-overlay: rgba(11, 8, 26, 0.65); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        .container { max-width: 450px; width: 100%; display: flex; flex-direction: column; gap: 25px; z-index: 10; }
-        .glass { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(15px); border-radius: 24px; padding: 25px 20px; box-shadow: 0 15px 35px rgba(233, 30, 99, 0.1); animation: slideUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .hero { text-align: center; border: 1px solid rgba(233, 30, 99, 0.4); background: rgba(233, 30, 99, 0.1); box-shadow: 0 0 40px rgba(233, 30, 99, 0.2); }
-        .hero h1 { font-size: 2.8rem; background: linear-gradient(135deg, #ff9a9e, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; border: 2px solid rgba(255,255,255,0.1); transition: transform 0.3s; }
-        .gallery img:hover { transform: scale(1.05); }
-        
-        .music-box { display: flex; align-items: center; justify-content: space-between; }
-        .play-btn { background: linear-gradient(135deg, var(--primary), #ff758f); border: none; padding: 8px 18px; border-radius: 30px; color: white; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(233, 30, 99, 0.5); }
-        audio { width: 100%; margin-top: 10px; filter: invert(1) hue-rotate(180deg); }
+        /* 💖 HER PERMANENT WALLPAPER ON ALL SECTIONS */
+        body {
+            background: url('welcome.jpg') center/cover fixed no-repeat;
+            color: var(--text); min-height: 100vh; 
+            display: flex; flex-direction: column; align-items: center; 
+            /* No padding so the sections stretch beautifully */
+        }
+        body::before { 
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--bg-overlay); backdrop-filter: blur(12px) brightness(0.85); 
+            z-index: -1; 
+        }
+        .container { max-width: 480px; width: 100%; display: flex; flex-direction: column; gap: 0; z-index: 10; }
 
-        .nav-btn { display: block; text-align: center; background: linear-gradient(135deg, rgba(233, 30, 99, 0.3), rgba(255, 105, 180, 0.1)); border: 1px solid var(--primary); color: white; text-decoration: none; padding: 12px; border-radius: 15px; font-weight: bold; margin: 5px 0; transition: 0.3s; box-shadow: 0 0 15px rgba(233, 30, 99, 0.1); }
-        .nav-btn:active { transform: scale(0.95); }
-        .nav-btn.gold { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)); border-color: var(--gold); color: var(--gold); box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+        /* 💡 DRAMATIC SCROLL REVEAL ANIMATION 💡 */
+        .story-section { 
+            min-height: 100vh; padding: 40px 20px; 
+            display: flex; flex-direction: column; justify-content: center; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            opacity: 0; transform: translateY(50px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        .story-section.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* Floating Hearts */
+        .glass { 
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255,255,255,0.08); 
+            backdrop-filter: blur(18px); border-radius: 28px; padding: 30px 20px; 
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.15); margin-bottom: 20px; 
+            text-align: center;
+        }
+        .glass.glow { border: 1px solid var(--gold); box-shadow: 0 0 60px rgba(255, 215, 0, 0.2); }
+        
+        h1 { font-size: 3rem; background: linear-gradient(135deg, #ff9a9e, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { font-size: 1.6rem; color: var(--primary); margin-bottom: 15px; }
+        h3 { font-size: 1.2rem; color: var(--gold); margin: 20px 0; }
+        p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 15px; opacity: 0.9; }
+        .amh { font-size: 1.1rem; line-height: 2; }
+
+        /* Music Player */
+        .music-box { position: sticky; top: 10px; z-index: 20; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); border-radius: 40px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; margin: 10px 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .play-btn { background: var(--primary); border: none; padding: 8px 18px; border-radius: 30px; color: white; font-weight: bold; cursor: pointer; }
+        audio { display: none; }
+
+        /* Gallery */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 15px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+        /* Game 1: The Password Lock */
+        .vault-box { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .lock-icon { font-size: 4rem; transition: 0.5s; }
+        .unlocked .lock-icon { transform: rotateY(180deg); }
+        .password-input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 12px; border-radius: 30px; color: white; width: 80%; text-align: center; font-size: 1rem; outline: none; }
+        .password-input:focus { border-color: var(--gold); }
+        .unlock-btn { background: var(--gold); border: none; color: #111; padding: 12px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 5px; }
+        .secret-letter { display: none; margin-top: 20px; text-align: left; background: rgba(255,215,0,0.05); padding: 20px; border-radius: 20px; border-left: 4px solid var(--gold); }
+        .secret-letter.show { display: block; animation: fadeIn 1.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Game 2: The Heartbeat Meter */
+        .meter-box { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .meter-container { width: 100%; height: 20px; background: rgba(255,255,255,0.1); border-radius: 30px; overflow: hidden; position: relative; }
+        .meter-fill { width: 0%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--gold)); border-radius: 30px; transition: width 0.1s; }
+        .heart-press-btn { font-size: 5rem; background: none; border: none; cursor: pointer; transition: 0.1s; color: #ff9a9e; text-shadow: 0 0 30px rgba(233, 30, 99, 0.5); }
+        .heart-press-btn:active { transform: scale(0.9); color: var(--gold); text-shadow: 0 0 60px var(--gold); }
+        .meter-percentage { font-size: 2rem; font-weight: bold; color: var(--gold); }
+
+        /* Floating Hearts Background */
         .hearts-container { position: fixed; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
-        .heart { position: absolute; bottom: -20px; font-size: 18px; animation: floatUp linear infinite; color: rgba(255, 105, 180, 0.4); }
+        .heart { position: absolute; bottom: -20px; font-size: 18px; animation: floatUp linear infinite; color: rgba(255, 105, 180, 0.3); }
         @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; } 50% { opacity: 1; transform: scale(1.2); } 100% { transform: translateY(-120vh) rotate(360deg) scale(0.5); opacity: 0; } }
+
+        /* Confetti Burst */
+        .confetti { position: fixed; z-index: 999; pointer-events: none; }
     </style>
 </head>
 <body>
+
     <div class="hearts-container" id="heartContainer"></div>
-    <div class="container">
-        <div class="glass hero">
-            <h1>9 Months</h1>
-            <p>Today we celebrate 9 months of us, Maki. ❤️</p>
-        </div>
-        <div class="glass music-box">
-            <p>🎵 Our Song</p>
-            <button class="play-btn" onclick="playMusic()">▶️ Play</button>
-            <audio id="bgMusic" loop><source src="O_ዝ_ፀዳል_Ze_Tsedal_Track_14_Official_Lyrics_Video.m4a" type="audio/mp4"></audio>
-        </div>
-        <div class="glass">
-            <h2>📸 Our Memories</h2>
-            <div class="gallery">
-                <img src="IMG_20260813_112923_570.jpg"> <img src="IMG_20260813_112936_333.jpg">
-                <img src="IMG_20260813_112929_029.jpg"> <img src="IMG_20260510_221202_125.jpg">
-                <img src="IMG_20260813_112823_055.jpg"> <img src="kejsls.jpg">
-                <img src="IMG_20260813_112912_766.jpg"> <img src="bet.jpg">
-            </div>
-        </div>
-        <div class="glass">
-            <a href="love.html" class="nav-btn">💖 Go to My Love Letter & Quiz</a>
-            <a href="surprise.html" class="nav-btn gold">🎉 Open the Final Surprise</a>
-        </div>
+    
+    <!-- Sticky Music Player -->
+    <div class="music-box">
+        <span>🎵 የኛ ዘፈን</span>
+        <button class="play-btn" onclick="playMusic()">▶️ አጫውት</button>
+        <audio id="bgMusic" loop><source src="O_ዝ_ፀዳል_Ze_Tsedal_Track_14_Official_Lyrics_Video.m4a" type="audio/mp4"></audio>
     </div>
+
+    <div class="container">
+        
+        <!-- CHAPTER 1: THE AWAKENING -->
+        <section class="story-section visible" id="ch1">
+            <div class="glass">
+                <h1>9 ወራት</h1>
+                <p>የእኛ ታሪክ በዚህ ቀን ተጀመረ።</p>
+                <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 20px;">Scroll down to begin the journey... ⬇️</p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 2: THE FIRST GLIMPSE -->
+        <section class="story-section" id="ch2">
+            <div class="glass">
+                <h2>💫 የመጀመሪያው እይታ</h2>
+                <p>ዓይኖቼ አንቺን ሲመለከቱ፣ ልቤ የሆነ ነገር ተሰማው። ህይወቴ የማትመስል ነገር እንደሚመጣ አውቄ ነበር።</p>
+                <p>አንቺ ለምትፈጥሪው ሰላም እና ለምትሰጪው ፍቅር ሀሳቤ ሁልጊዜ ወደ አንቺ ይመለሳል።</p>
+                <p><em>ማኪ፣ አንቺ ህይወቴ ነሽ።</em></p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 3: THE JOURNEY (PHOTOS) -->
+        <section class="story-section" id="ch3">
+            <div class="glass">
+                <h2>📸 በአንቺ አይን የማለፈው ጊዜ</h2>
+                <p>እያንዳንዱ ፎቶ ለኔ ትርጉም ያለው ነው። አንድ ላይ ያሳለፍናቸውን የማይረሱ ጊዜያት... አንድ ላይ እንገናኝ።</p>
+                <div class="gallery">
+                    <img src="IMG_20260813_112923_570.jpg"> <img src="IMG_20260813_112936_333.jpg">
+                    <img src="IMG_20260813_112929_029.jpg"> <img src="IMG_20260510_221202_125.jpg">
+                    <img src="IMG_20260813_112823_055.jpg"> <img src="kejsls.jpg">
+                    <img src="IMG_20260813_112912_766.jpg"> <img src="bet.jpg">
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 4: THE DEPTHS (REASONS) -->
+        <section class="story-section" id="ch4">
+            <div class="glass glow">
+                <h2>💖 9 ታላላቅ ምክንያቶች</h2>
+                <p>ለምን እወድሻለሁ፧ በጣም ብዙ ናቸው፣ እነሆ 9 ቱ፦</p>
+                <ul style="list-style: none; padding: 0; text-align: left; line-height: 2.2;">
+                    <li><strong>1.</strong> ንጹህ ልብሽ</li>
+                    <li><strong>2.</strong> ማንነትሽ</li>
+                    <li><strong>3.</strong> ታታሪነትሽን</li>
+                    <li><strong>4.</strong> እምነትሽ</li>
+                    <li><strong>5.</strong> ለኔ ማሰብሽ ጊዜ</li>
+                    <li><strong>6.</strong> ቆንጆነትሽ 😜</li>
+                    <li><strong>7.</strong> ሰላም የምታስብሽ ነገር</li>
+                    <li><strong>8.</strong> ህልምሽንም እወዳለሁ</li>
+                    <li><strong>9.</strong> እውነት ለመናገር ሁሉነገርሽን ነው የምወድሽ ፍቅሬ</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CHAPTER 5: THE JOKE -->
+        <section class="story-section" id="ch5">
+            <div class="glass" style="border: 1px solid #ff9a9e;">
+                <h2>🤣 ልቤ የሚሳቅልብሽ ቀልድ</h2>
+                <p style="font-size: 1.4rem; color: #ff9a9e;">
+                    "አስብው ያኔ ጀምረን ቢሆን ልጅ ይኖረን ነበር! 🤣🙈"
+                </p>
+                <p style="font-size: 0.9rem; margin-top: 15px;">(ለዘላለም ትዝ እላለሁ ይህንን ስለምታስቢ)</p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 6: THE VAULT (UNIQUE GAME 1) -->
+        <section class="story-section" id="ch6">
+            <div class="glass glow vault-box" id="vaultBox">
+                <h2>🔐 የልቤ ምስጢር</h2>
+                <p>ትክክለኛውን አስማት ቃል በመተየብ ደብዳቤዬን ክፈችው።</p>
+                <div class="lock-icon" id="lockIcon">🔒</div>
+                <input type="text" class="password-input" id="passwordInput" placeholder="ፍቅር / Maki" autocomplete="off">
+                <button class="unlock-btn" onclick="unlockVault()">🔓 ደብዳቤውን ክፈች</button>
+                
+                <div class="secret-letter" id="secretLetter">
+                    <h3>💌 ማኪ የልቤ፣</h3>
+                    <p>ይህ ደብዳቤ ከ9 ወራት በፊት ልልክልሽ የፈለግሁት ደብዳቤ ነው። አይኖቼ አንቺን ሲመለከቱ፣ ልቤ የሆነ ልዩ ነገር እንደሚፈጠር አወቀ። በዚህች ቀን፣ በመጨረሻም ልቤን ለአንቺ እከፍታለሁ።</p>
+                    <p>አንቺ የምትለግሺው ፍቅር በዚህ አለም ውስጥ ካሉ በጣም ድንቅ ነገሮች አንዱ ነው። አንቺ ወደ ኔ በምታመጪው ሰላም እና በምትፈጥሪው ፈገግታ ህይወቴ ተለወጠ። ከአንቺ ጋር ያለሁት እያንዳንዱ ደቂቃ እስከ ዘላለም ድረስ በልቤ ውስጥ ይኖራል።</p>
+                    <p>ማኪ፣ አንቺ ያለፈዬ፣ የአሁኔ፣ እና ዘላለማዊ የወደፊቴ ነሽ። ልቤ ለዘላለም የአንቺ ነው።</p>
+                    <p style="text-align: right; margin-top: 20px;"><em>ለዘላለም የአንቺ፣<br>ባለቤትህ።</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 7: HEARTBEAT METER (UNIQUE GAME 2) -->
+        <section class="story-section" id="ch7">
+            <div class="glass glow meter-box">
+                <h2>❤️‍🔥 የልቤ ምት</h2>
+                <p>የልቤን ምት እስከ 100% ለማሞላት በታችኛው ልብ ላይ <strong>ተጫን እና ይዘው</strong>!</p>
+                
+                <div class="meter-container">
+                    <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <div class="meter-percentage" id="meterPercentage">0%</div>
+                
+                <button class="heart-press-btn" id="heartPressBtn" ontouchstart="startHold()" ontouchend="stopHold()" onmousedown="startHold()" onmouseup="stopHold()" onmouseleave="stopHold()">
+                    ❤️
+                </button>
+                <p style="font-size: 0.8rem; opacity: 0.6;">ይህን ልብ ይዘው ይቆዩ!</p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 8: THE FINAL CELEBRATION -->
+        <section class="story-section" id="ch8">
+            <div class="glass" style="border: 2px solid var(--gold); box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);">
+                <h2>🎉 የዘላለም በዓል</h2>
+                <h3>9 ወራትዎ መልካም ይሁን! ❤️</h3>
+                <p>አንቺ የህይወቴ የኮከብ ብርሃን ነሽ።</p>
+                <button style="background: var(--gold); border: none; color: #111; padding: 15px; border-radius: 30px; font-weight: bold; width: 100%; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); margin-top: 20px;" onclick="finalConfetti()">🎊 ፍቅሬን አንጠፍጥፊ! 🎊</button>
+            </div>
+        </section>
+        
+    </div>
+
     <script>
+        // 1. Floating Hearts
         function createHeart() {
             const h = document.createElement('div'); h.className = 'heart';
             h.innerHTML = ['❤️','💖','💕','💗','❤️‍🔥'][Math.floor(Math.random()*5)];
@@ -74,11 +222,111 @@
             document.getElementById('heartContainer').appendChild(h);
             setTimeout(() => h.remove(), 12000);
         }
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 300);
+
+        // 2. Music
         function playMusic() {
             const audio = document.getElementById('bgMusic');
             if (audio.paused) { audio.play(); } else { audio.pause(); }
         }
+
+        // 3. DRAMATIC SCROLL REVEAL (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.story-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // 4. UNIQUE GAME 1: THE VAULT
+        function unlockVault() {
+            const input = document.getElementById('passwordInput').value.toLowerCase();
+            const validWords = ['maki', 'ፍቅር', 'love', 'fiker', 'fkr'];
+            if(validWords.some(word => input.includes(word))) {
+                document.getElementById('vaultBox').classList.add('unlocked');
+                document.getElementById('lockIcon').innerHTML = '🔓';
+                document.getElementById('secretLetter').classList.add('show');
+                document.getElementById('passwordInput').style.display = 'none';
+                document.querySelector('#vaultBox .unlock-btn').style.display = 'none';
+            } else {
+                alert("ትክክለኛውን ቃል አልገባሽም። እንደገና ሞክሪ (ለምሳሌ: ፍቅር, Maki)");
+            }
+        }
+
+        // 5. UNIQUE GAME 2: HEARTBEAT METER
+        let holdInterval = null;
+        let meterValue = 0;
+        let meterFull = false;
+
+        function startHold() {
+            if(meterFull) return;
+            // Apply vibration on mobile to simulate heartbeat if available
+            if(navigator.vibrate) navigator.vibrate(30);
+            holdInterval = setInterval(() => {
+                meterValue += 0.5;
+                if(meterValue >= 100) {
+                    meterValue = 100;
+                    meterFull = true;
+                    clearInterval(holdInterval);
+                    holdInterval = null;
+                    triggerMeterCelebration();
+                }
+                document.getElementById('meterFill').style.width = meterValue + '%';
+                document.getElementById('meterPercentage').innerText = Math.floor(meterValue) + '%';
+            }, 20); // fast fill rate
+        }
+
+        function stopHold() {
+            if(holdInterval) {
+                clearInterval(holdInterval);
+                holdInterval = null;
+            }
+        }
+
+        function triggerMeterCelebration() {
+            // Launch intense confetti
+            if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
+            for(let i=0; i<250; i++) {
+                setTimeout(() => createConfettiPiece(), i * 5);
+            }
+            document.querySelector('.heart-press-btn').style.color = '#ffd700';
+            document.getElementById('meterFill').style.background = "linear-gradient(90deg, #ffd700, #fff)";
+            document.getElementById('meterPercentage').innerText = "❤️ 100% ልቤ ተሞላ! ❤️";
+        }
+
+        // 6. FINAL CONFETTI BURST (For the final button)
+        function finalConfetti() {
+            for(let i=0; i<200; i++) {
+                setTimeout(() => createConfettiPiece(), i * 10);
+            }
+        }
+
+        function createConfettiPiece() {
+            let c = document.createElement('div');
+            c.className = 'confetti';
+            c.style.left = Math.random() * 100 + 'vw';
+            c.style.top = '-20px';
+            c.style.width = (Math.random() * 10 + 5) + 'px';
+            c.style.height = (Math.random() * 10 + 5) + 'px';
+            c.style.backgroundColor = ['#e91e63','#ffd700','#ff9a9e','#ffffff','#00ffcc','#ff758f'][Math.floor(Math.random()*6)];
+            c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            document.body.appendChild(c);
+            
+            let speed = Math.random() * 3 + 2;
+            let x = Math.sin(Math.random() * 2 * Math.PI) * 150 + 150;
+            let y = Math.random() * 100 + 100;
+            c.style.transition = `transform ${speed}s ease-in-out, opacity ${speed}s ease-in-out`;
+            setTimeout(() => {
+                c.style.transform = `translate(${x}px, ${y}vh) rotate(${Math.random()*720}deg)`;
+                c.style.opacity = '0';
+            }, 10);
+            setTimeout(() => c.remove(), (speed+1)*1000);
+        }
     </script>
 </body>
-</html>
+                                           </html>
