@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ለኔ ፍቅሬ ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #e91e63; --gold: #ffd700; --text: #f5e6f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: url('welcome.jpg') center/cover fixed no-repeat; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 8, 26, 0.6); backdrop-filter: blur(18px) brightness(0.9); z-index: -1; }
+        .container { max-width: 450px; width: 100%; display: flex; flex-direction: column; gap: 25px; z-index: 10; }
+        
+        .glass { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(15px); border-radius: 24px; padding: 25px 20px; box-shadow: 0 15px 35px rgba(233, 30, 99, 0.1); animation: slideUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .reasons-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+        .reason-card { background: rgba(233, 30, 99, 0.15); border: 1px solid rgba(233, 30, 99, 0.2); padding: 10px 5px; border-radius: 12px; text-align: center; cursor: pointer; transition: 0.3s; font-size: 0.8rem; min-height: 100px; display: flex; align-items: center; justify-content: center; font-weight: 600; box-shadow: 0 0 15px rgba(233, 30, 99, 0.1); }
+        .reason-card:active { transform: scale(0.95); background: rgba(233, 30, 99, 0.4); }
+        .reason-card .hidden-text { display: none; color: var(--gold); font-weight: 400; font-size: 0.7rem; line-height: 1.2; }
+        .reason-card.flipped .hidden-text { display: block; }
+        .reason-card.flipped .front-text { display: none; }
+
+        /* Fun Amharic Quiz Styling */
+        .quiz-opt { display: block; width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 12px; border-radius: 12px; margin-top: 5px; text-align: left; cursor: pointer; transition: 0.2s; }
+        .quiz-opt:active { transform: scale(0.95); }
+        .quiz-opt.correct { background: rgba(46, 204, 113, 0.4) !important; border-color: #2ecc71 !important; }
+        .quiz-opt.wrong { background: rgba(231, 76, 60, 0.4) !important; border-color: #e74c3c !important; }
+        .fb { min-height: 20px; font-size: 0.8rem; font-weight: bold; margin: 5px 0 15px 0; color: #ffd700;}
+
+        /* Letter */
+        .letter-box { text-align: center; border: 1px solid var(--gold); box-shadow: 0 0 35px rgba(255, 215, 0, 0.15); cursor: pointer; transition: 0.3s; }
+        .letter-box:active { transform: scale(0.98); }
+        .secret-message { display: none; margin-top: 15px; font-style: italic; color: #ffd700; font-size: 0.95rem; text-align: left; }
+        .secret-message.show { display: block; animation: slideUp 0.5s; }
+
+        .nav-btn { display: block; text-align: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; text-decoration: none; padding: 12px; border-radius: 15px; font-weight: bold; transition: 0.3s; }
+        .nav-btn:active { transform: scale(0.95); background: rgba(255,255,255,0.2); }
+
+        .hearts-container { position: fixed; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
+        .heart { position: absolute; bottom: -20px; font-size: 18px; animation: floatUp linear infinite; color: rgba(255, 105, 180, 0.4); }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; } 50% { opacity: 1; transform: scale(1.2); } 100% { transform: translateY(-120vh) rotate(360deg) scale(0.5); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartContainer"></div>
+    <div class="container">
+        <div class="glass" style="text-align:center;">
+            <h1>💖 ፍቅሬ ለኔ</h1>
+            <p>ካርዶቹን ተጫን!! በጣም የምወድሽ ነገሮችን አሳይሻለሁ!</p>
+        </div>
+        
+        <div class="glass">
+            <div class="reasons-grid" id="reasonGrid">
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">1</span><span class="hidden-text">ንጹህ ልብሽ</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">2</span><span class="hidden-text">ማንነትሽ</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">3</span><span class="hidden-text">ታታሪነትሽን</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">4</span><span class="hidden-text">እምነትሽ</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">5</span><span class="hidden-text">ለኔ ማሰብሽ ጊዜ</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">6</span><span class="hidden-text">ቆንጆነትሽ 😜</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">7</span><span class="hidden-text">ሰላም የምታስብሽ ነገር</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">8</span><span class="hidden-text">ህልምሽንም እወዳለሁ</span></div>
+                <div class="reason-card" onclick="flipCard(this)"><span class="front-text">9</span><span class="hidden-text">እውነት ለመናገር ሁሉነገርሽን ነው የምወድሽ ፍቅሬ</span></div>
+            </div>
+        </div>
+
+        <!-- ✨ NEW: AMHARIC ROMANTIC QUIZ ✨ -->
+        <div class="glass">
+            <h2>🤔 ማኪን ምን ያህል ታውቂያለሽ?</h2>
+            <p><strong>1. ምን ዓይነት ምግብ ነው በጣም የምወደው?</strong></p>
+            <button class="quiz-opt" onclick="quizCheck(1, 0, this)">ፒዛ</button>
+            <button class="quiz-opt" onclick="quizCheck(1, 1, this)">አንቺ እና ራት ላይ የምትሰሪው ምግብ</button>
+            <button class="quiz-opt" onclick="quizCheck(1, 2, this)">በርበሬ የለበሰ ዶሮ</button>
+            <div class="fb" id="fb1"></div>
+
+            <p><strong>2. ከሁሉም በላይ በአንቺ ላይ የምወደው ነገር?</strong></p>
+            <button class="quiz-opt" onclick="quizCheck(2, 0, this)">ፊትሽን</button>
+            <button class="quiz-opt" onclick="quizCheck(2, 1, this)">ፍቅርሽን እና እንክብካቤሽን</button>
+            <button class="quiz-opt" onclick="quizCheck(2, 2, this)">ሁሉንም ነገር</button>
+            <div class="fb" id="fb2"></div>
+
+            <p><strong>3. ወደፊት ወዴት ነው አንቺን ልወስድሽ የምፈልገው?</strong></p>
+            <button class="quiz-opt" onclick="quizCheck(3, 0, this)">ዱባይ</button>
+            <button class="quiz-opt" onclick="quizCheck(3, 1, this)">ትርፍ ኮከቦች ያሉበት ተራራ</button>
+            <button class="quiz-opt" onclick="quizCheck(3, 2, this)">አንቺ የምትፈልጊው ቦታ</button>
+            <div class="fb" id="fb3"></div>
+            <div style="text-align:center; margin-top: 10px; color: #ff758f; font-weight: bold;" id="quizFinalMsg"></div>
+        </div>
+
+        <!-- JOKE -->
+        <div class="glass" style="text-align:center; border: 1px solid #ff9a9e;">
+            <h2>🤣 ለማኪ ቀልድ</h2>
+            <p style="font-size: 1.1rem; font-style: italic; color: #ff9a9e; margin-top: 10px;">
+                "አስብው ያኔ ጀምረን ቢሆን ልጅ ይኖረን ነበር! 🤣🙈"
+            </p>
+        </div>
+
+        <!-- LETTER -->
+        <div class="glass letter-box" onclick="revealSecret()">
+            <h2>📩 ለአንቺ የሆነ ደብዳቤ</h2>
+            <p style="font-size:0.8rem;">ደብዳቤውን ለማንበብ እዚህ ተጫን</p>
+            <div class="secret-message" id="secretMsg">
+                ውድ ማኪ የልቤ፤<br><br>
+                ከ9 ወራት በፊት፣ ህይወቴ ወደ ነበረበት እንደሚቀየር አላውቅም ነበር። ዛሬ፣ ህይወቴን ያለአንቺ መገመት አልችልም። አንቺ ሰላሜ፣ ውዥንብሬ፣ እና ቤቴ ነሽ።<br><br>
+                ህይወቴ ውስጥ እጅግ በጣም ድንቅ ሴት ስለሆንሽ አመሰግናለሁ። ከአንቺ ጋር ለዘላለም አብረን እንሁን! ❤️<br><br>
+                <em>ለዘላለም የአንቺ፤<br>ባለቤትህ።</em>
+            </div>
+        </div>
+
+        <div class="glass">
+            <a href="index.html" class="nav-btn">⬅️ ወደ መጀመሪያው ገጽ ተመለስ</a>
+        </div>
+    </div>
+    <script>
+        function createHeart() {
+            const h = document.createElement('div'); h.className = 'heart';
+            h.innerHTML = ['❤️','💖','💕','💗','❤️‍🔥'][Math.floor(Math.random()*5)];
+            h.style.left = Math.random() * 100 + '%';
+            h.style.animationDuration = (Math.random() * 8 + 4) + 's';
+            h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.getElementById('heartContainer').appendChild(h);
+            setTimeout(() => h.remove(), 12000);
+        }
+        setInterval(createHeart, 500);
+        function flipCard(el) { el.classList.toggle('flipped'); }
+        function revealSecret() { document.getElementById('secretMsg').classList.toggle('show'); }
+
+        // Quiz Logic
+        const correct = {1: 1, 2: 2, 3: 2}; // Correct answer indices (0,1,2)
+        function quizCheck(q, selected, btn) {
+            let parent = btn.parentElement;
+            let btns = parent.querySelectorAll('.quiz-opt');
+            let fb = document.getElementById('fb'+q);
+            if (btns[0].classList.contains('correct')) return; // Already answered
+            
+            btns.forEach((b, i) => {
+                b.style.pointerEvents = 'none';
+                if(i === correct[q]) b.classList.add('correct');
+                else if(i === selected) b.classList.add('wrong');
+            });
+            if(selected === correct[q]) fb.innerHTML = "✅ ትክክል ነሽ! እንዴት ታውቂያለሽ? 🥰";
+            else {
+                let msgs = ["😅 ትንሽ ስህተት ነው! አትጨነቂ, አሁንም ልዩ ነሽ!", "😆 ውድቅ ነው! በመጨረሻ አሸንፊያለሽ!"];
+                fb.innerHTML = msgs[Math.floor(Math.random() * msgs.length)];
+            }
+            // Final message after all answered
+            setTimeout(() => {
+                if(document.getElementById('fb1').innerText.length > 0 && document.getElementById('fb2').innerText.length > 0 && document.getElementById('fb3').innerText.length > 0) {
+                    document.getElementById('quizFinalMsg').innerText = "🎉 100% የኔ የልብ ! በጣም እወድሻለሁ!";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+                                                                                                                                       </html>
