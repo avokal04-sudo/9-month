@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Final Surprise! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #e91e63; --gold: #ffd700; --text: #f5e6f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: url('welcome.jpg') center/cover fixed no-repeat; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 8, 26, 0.6); backdrop-filter: blur(18px) brightness(0.9); z-index: -1; }
+        .container { max-width: 450px; width: 100%; display: flex; flex-direction: column; gap: 25px; z-index: 10; }
+        
+        .glass { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(15px); border-radius: 24px; padding: 25px 20px; box-shadow: 0 15px 35px rgba(255, 215, 0, 0.1); animation: slideUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .hero { text-align: center; border: 2px solid var(--gold); box-shadow: 0 0 40px rgba(255, 215, 0, 0.15); }
+        .hero h1 { font-size: 2rem; color: var(--gold); }
+        .hero h2 { font-size: 4rem; margin: 10px 0; }
+
+        .confetti-btn { background: linear-gradient(135deg, var(--gold), #ffd700); border: none; color: #111; padding: 15px; border-radius: 30px; font-weight: bold; width: 100%; margin-top: 15px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); }
+        .confetti-btn:active { transform: scale(0.95); }
+        
+        .lock-secret { font-size: 3.5rem; cursor: pointer; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); transition: 0.3s; text-align: center; display: block;}
+        .lock-secret:active { transform: scale(0.9); }
+        .hidden-message { display: none; margin-top: 15px; font-style: italic; color: #ff9a9e; font-size: 1.1rem; text-align: center; }
+        .hidden-message.show { display: block; animation: slideUp 0.5s; }
+
+        .nav-btn { display: block; text-align: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; text-decoration: none; padding: 12px; border-radius: 15px; font-weight: bold; transition: 0.3s; }
+        .nav-btn:active { transform: scale(0.95); background: rgba(255,255,255,0.2); }
+
+        .hearts-container { position: fixed; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
+        .heart { position: absolute; bottom: -20px; font-size: 18px; animation: floatUp linear infinite; color: rgba(255, 105, 180, 0.4); }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; } 50% { opacity: 1; transform: scale(1.2); } 100% { transform: translateY(-120vh) rotate(360deg) scale(0.5); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartContainer"></div>
+    <div class="container">
+        <div class="glass hero">
+            <h1>🎊 Happy 9 Months!</h1>
+            <h2>Maki ❤️</h2>
+            <p>You are my past, my present, and my only future.</p>
+        </div>
+
+        <div class="glass" style="text-align:center;">
+            <h2>🔐 A secret promise for you</h2>
+            <span class="lock-secret" onclick="unlockSecret()">🔒</span>
+            <div class="hidden-message" id="secretPromise">
+                💖 "እያንዳንዱ ቀን ስላንቺ ማሰብ ተጀምሮ በህልምሽ ያበቃል። ለዘላለም አንቺን ልወድሽ ቃል እገባለሁ።" 💖
+            </div>
+        </div>
+
+        <div class="glass" style="text-align:center;">
+            <h2>Pop the ultimate celebration!</h2>
+            <button class="confetti-btn" onclick="burstConfetti()">🎉 BURST WITH LOVE 🎉</button>
+        </div>
+
+        <div class="glass">
+            <a href="index.html" class="nav-btn">⬅️ Back to Home</a>
+        </div>
+    </div>
+    <script>
+        function createHeart() {
+            const h = document.createElement('div'); h.className = 'heart';
+            h.innerHTML = ['❤️','💖','💕','💗','❤️‍🔥'][Math.floor(Math.random()*5)];
+            h.style.left = Math.random() * 100 + '%';
+            h.style.animationDuration = (Math.random() * 8 + 4) + 's';
+            h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            document.getElementById('heartContainer').appendChild(h);
+            setTimeout(() => h.remove(), 12000);
+        }
+        setInterval(createHeart, 500);
+
+        function unlockSecret() {
+            const lock = document.querySelector('.lock-secret');
+            const msg = document.getElementById('secretPromise');
+            if(lock.innerHTML === "🔒") {
+                lock.innerHTML = "🔓";
+                msg.classList.add('show');
+            } else {
+                lock.innerHTML = "🔒";
+                msg.classList.remove('show');
+            }
+        }
+
+        function burstConfetti() {
+            for(let i=0; i<150; i++) {
+                let c = document.createElement('div');
+                c.style.position = 'fixed';
+                c.style.left = Math.random() * 100 + '%';
+                c.style.top = '-20px';
+                c.style.width = '8px'; c.style.height = '8px';
+                c.style.backgroundColor = ['#e91e63','#ffd700','#ff9a9e','#ffffff','#00ffcc'][Math.floor(Math.random()*5)];
+                c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                c.style.zIndex = '99999'; c.style.pointerEvents = 'none';
+                document.body.appendChild(c);
+                let speed = Math.random() * 3 + 2;
+                let x = Math.sin(Math.random() * 2 * Math.PI) * 100 + 200;
+                let y = Math.random() * 100 + 100;
+                c.style.transition = `transform ${speed}s ease-out, opacity ${speed}s ease-out`;
+                setTimeout(() => {
+                    c.style.transform = `translate(${x}px, ${y}vh) rotate(${Math.random()*720}deg)`;
+                    c.style.opacity = '0';
+                }, 10);
+                setTimeout(() => c.remove(), (speed+1)*1000);
+            }
+        }
+    </script>
+</body>
+</html>
